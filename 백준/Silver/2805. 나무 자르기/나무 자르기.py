@@ -12,5 +12,5 @@ while end >= start:
     if sum > M : start = mid + 1
     elif sum < M : end = mid - 1
     else: break
-if sum < M: mid -= 1
+if sum < M: mid -= 1 # start == end 이고 sum < M 일때 예외처리
 print(mid)
