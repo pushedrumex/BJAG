@@ -5,8 +5,9 @@ start = 0
 end = max(Tree)
 
 while end >= start:
-    sum = 0
-    mid = (end + start)//2
+    sum = 0 # 최소
+    mid = (end + start)//2 # 최대
+    
     for l in Tree:
         if l > mid:sum += l-mid # 잘린 나무의 총 길이
             
