@@ -9,8 +9,7 @@ while end >= start:
     mid = (end + start)//2
     for l in Tree:
         if l > mid:sum += l-mid
-    if sum > M : start = mid + 1
+    if sum > M : start = mid + 1;result = mid
     elif sum < M : end = mid - 1
-    else: break
-if sum < M: mid -= 1 # start == end 이고 sum < M 일때 예외처리
-print(mid)
+    else: result = mid; break
+print(result)
