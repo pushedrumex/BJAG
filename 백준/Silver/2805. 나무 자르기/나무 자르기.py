@@ -8,8 +8,9 @@ while end >= start:
     sum = 0
     mid = (end + start)//2
     for l in Tree:
-        if l > mid:sum += l-mid
-    if sum > M : start = mid + 1;result = mid
+        if l > mid:sum += l-mid # 잘린 나무의 총 길이
+            
+    if sum > M : start = mid + 1; result = mid # 요청보다 많은게 답이 될 수 있음
     elif sum < M : end = mid - 1
-    else: result = mid; break
+    else: result = mid; break # 찾았다면 break
 print(result)
