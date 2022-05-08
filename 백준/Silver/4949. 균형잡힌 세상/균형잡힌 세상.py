@@ -1,21 +1,19 @@
-while True:
-    stc = input()
-    if stc[0] == '.':exit()
-    result = 'yes'
-    S = []
-    L = []
-    for i in range(len(stc)):
-        if stc[i] == '.':break
-        if stc[i] == '(':S.append(i)
-        elif stc[i] == ')':
-            if not S:result = 'no';break
-            if L and L[-1] > S[-1]:result = 'no';break
-            S.pop()
-        elif stc[i] == '[':L.append(i)
-        elif stc[i] == ']':
-            if not L: result = 'no';break
-            if S and S[-1] > L[-1]: result = 'no';break
-            L.pop()
+d = {')':'(',']':'['}
 
-    if S or L:result = 'no'
-    print(result)
+while True:
+    s = input()
+    if s == '.':exit()
+        
+    flag = 0 # 올바른 문장이라면 0
+    
+    stack = []
+    for c in s:
+        if c in d.values():stack.append(c)
+        elif c in d.keys():
+            if not stack or stack.pop() != d[c]:flag=1;break
+            # 닫는 괄호가 나왔을 때, stack에 저장된 열린괄호가 없거나 가장 최근에 append된 문자가 해당 열린 괄호가 아닐경우
+                
+    if stack:flag=1 # 괄호가 짝지어지지 않았을 경우
+        
+    if flag == 1:print('no')
+    else:print('yes')
