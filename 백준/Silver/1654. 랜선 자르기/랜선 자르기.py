@@ -11,7 +11,8 @@ while start <= end:
     
     for l in L: sum += l//mid # 총 랜선 길이
         
-    if sum >= N: start = mid + 1; result = mid # 필요한 랜선 개수보다 많거나 같으면 답이 될 
+    if sum >= N: start = mid + 1; result = mid 
+    # 필요한 랜선 개수보다 많거나 같으면 답이 될 수 있음
     elif sum < N: end = mid - 1
         
 print(result)
