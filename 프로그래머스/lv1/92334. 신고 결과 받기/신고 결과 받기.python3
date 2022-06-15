@@ -1,0 +1,16 @@
+from collections import defaultdict
+
+def solution(id_list, report, k):
+    get_singo = defaultdict(list)
+    get_message = defaultdict(int)
+    for re in report:
+        re = re.split()
+        get_singo[re[1]].append(re[0])
+    for one in id_list:
+        get_singo[one] = set(get_singo[one])
+        if len(get_singo[one]) >= k:
+            for gm in get_singo[one]: get_message[gm]+=1
+                
+    answer = []
+    for one in id_list:answer.append(get_message[one])
+    return answer
