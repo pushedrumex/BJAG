@@ -1,0 +1,15 @@
+def solution(new_id):
+    new_id = new_id.lower()
+    temp = []
+    for d in new_id:
+        if d.isalnum() or d in ['-','_','.']:temp.append(d)
+    new_id = "".join(temp)
+    temp = []
+    for d in new_id.split('.'):
+        if d:temp.append(d)
+    new_id = ".".join(temp)
+    if not new_id:new_id = "a"
+    if len(new_id)>=16:new_id = new_id[:15]
+    if new_id[-1] == '.':new_id = new_id[:14]
+    while len(new_id)<=2:new_id += new_id[-1]
+    return new_id
