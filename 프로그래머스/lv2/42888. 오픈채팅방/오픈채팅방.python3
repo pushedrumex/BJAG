@@ -1,0 +1,12 @@
+def solution(record):
+    answer = []
+    user = {}
+    for s in record:
+        s = s.split()
+        if s[0] == "Enter":
+            answer.append([s[1],"님이 들어왔습니다."])
+            user[s[1]] = s[2]
+        elif s[0] == "Leave":answer.append([s[1],"님이 나갔습니다."])
+        else:user[s[1]] = s[2]
+    for i in range(len(answer)):answer[i] = user[answer[i][0]]+answer[i][1]
+    return answer
