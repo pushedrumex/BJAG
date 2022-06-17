@@ -1,0 +1,20 @@
+from itertools import combinations
+from collections import defaultdict
+
+def solution(orders, course):
+    answer = []
+    d = {}
+    for n in course:d[n] = [2,[]]
+    cnt = defaultdict(int)
+    slcs = []
+    for order in orders:
+        for n in course:slcs+=list(combinations(sorted(order),n))
+    for slc in slcs:cnt["".join(slc)] += 1
+    for slc in cnt.keys():
+        l = len(slc)
+        if d[l][0]<cnt[slc]:
+            d[l][0]=cnt[slc]
+            d[l][1]=[slc]
+        elif d[l][0]==cnt[slc]:d[len(slc)][1].append(slc)
+    for n in course:answer += d[n][1]
+    return sorted(answer)
