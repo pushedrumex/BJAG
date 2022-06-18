@@ -1,0 +1,16 @@
+from collections import defaultdict
+def solution(N, stages):
+    answer = []
+    d = {}
+    dd = defaultdict(list)
+    for stg in range(1,N+1):
+        num = 0
+        loser =  0
+        for stage in stages:
+            if stage>=stg:num+=1
+            if stage==stg:loser+=1
+        if num == 0:d[stg] = 0
+        else: d[stg] = loser/num
+    for k in d.keys():dd[d[k]].append(k)
+    for k in sorted(dd.keys(),reverse = True):answer+=sorted(dd[k])
+    return answer
