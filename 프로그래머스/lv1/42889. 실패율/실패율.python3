@@ -12,5 +12,6 @@ def solution(N, stages):
         if num == 0:d[stg] = 0
         else: d[stg] = loser/num
     for k in d.keys():dd[d[k]].append(k)
-    for k in sorted(dd.keys(),reverse = True):answer+=sorted(dd[k])
+    l = sorted(dd.keys(),reverse = True)
+    for k in l:answer+=sorted(dd[k])
     return answer
