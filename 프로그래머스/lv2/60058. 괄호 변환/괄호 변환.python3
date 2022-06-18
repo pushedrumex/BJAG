@@ -1,0 +1,25 @@
+from collections import deque
+
+d = {'(':[1,')'],')':[-1,'(']}
+
+def check(s):
+    balance = 0
+    for c in s:
+        balance+=d[c][0]
+        if balance<0:return False
+    return True
+
+def solution(p):
+    if not p or check(p):return "".join(p)
+    p = deque(p)
+    u = deque()
+    balance = 0
+    while p:
+        u.append(p.popleft())
+        balance+=d[u[-1]][0]
+        if balance == 0:break
+    if check(u):return "".join(u) + solution("".join(p))
+    u.popleft()
+    u.pop()
+    for i in range(len(u)):u[i] = d[u[i]][1]
+    return '('+solution(p)+')'+"".join(u)
