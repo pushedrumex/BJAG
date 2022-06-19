@@ -1,0 +1,17 @@
+from collections import defaultdict
+
+def solution(str1, str2):
+    str1,str2 = str1.lower(),str2.lower()
+    uni,ints = 0,0
+    d = defaultdict(int)
+    for i in range(len(str1)-1):
+        tc = str1[i:i+2]
+        if tc[0].isalpha() and tc[1].isalpha():d[tc]+=1;uni+=1
+    for i in range(len(str2)-1):
+        tc = str2[i:i+2]
+        if tc[0].isalpha() and tc[1].isalpha():
+            if d[tc]>0:ints+=1;d[tc]-=1
+            else:uni+=1
+    if not uni:answer = 65536
+    else:answer = int(ints/uni*65536)
+    return answer
