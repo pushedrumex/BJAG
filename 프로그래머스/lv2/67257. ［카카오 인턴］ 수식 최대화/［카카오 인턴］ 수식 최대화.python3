@@ -1,0 +1,30 @@
+from itertools import permutations
+from collections import deque
+
+def solution(expression):
+    orders = list(permutations(('+','-','*'),3))
+    answer = 0
+    e = deque(expression)
+    e1 = deque([])
+    while e:
+        num = ""
+        while e and e[0].isnumeric():num+=e.popleft()
+        e1.append(int(num))
+        if e:e1.append(e.popleft())
+    for order in orders:
+        temp = deque(list(e1)[:])
+        for cal in order:
+            scan = []
+            while temp:
+                while temp and temp[0] != cal:scan.append(temp.popleft())
+                if not temp:break
+                c = temp.popleft()
+                first = scan.pop()
+                second = temp.popleft()
+                if c == '-':result=first-second
+                elif c == '+':result=first+second
+                else:result=first*second
+                scan.append(result)
+            temp = deque(scan[:])
+        answer = max(answer,abs(temp[0]))
+    return answer
