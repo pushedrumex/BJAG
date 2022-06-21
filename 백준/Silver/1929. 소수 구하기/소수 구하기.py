@@ -14,3 +14,15 @@ for i in range(2, root + 1): # 2 ~ root, root까지만 검사해도 소수가 �
 for i in range(M, N+1):
     if prime[i] == True:
         print(i)
+        
+        
+# 비슷한 풀이 : 시간이 더 오래걸림
+# 1부터 n까지 있는 소수 개수 
+
+def solution(n):
+    num=set(range(2,n+1)) # set은 뺄셈 가능
+
+    for i in range(2,n+1):
+        if i in num:
+            num-=set(range(2*i,n+1,i))
+    return len(num)
