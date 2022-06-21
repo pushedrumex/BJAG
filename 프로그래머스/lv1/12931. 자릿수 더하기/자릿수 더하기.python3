@@ -1,0 +1,5 @@
+def solution(n):
+    n = str(n)
+    answer = 0
+    for k in n:answer+=int(k)
+    return answer
