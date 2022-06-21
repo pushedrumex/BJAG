@@ -1,8 +1,9 @@
 def solution(dartResult):
     Result = []
-    for c in dartResult:
+    for i in range(len(dartResult)):
+        c = dartResult[i]
         if c.isnumeric():
-            if c == '0' and Result and Result[-1] == 1:Result[-1] = 10
+            if Result and dartResult[i-1].isnumeric():Result[-1] = 10
             else: Result.append(int(c))
             continue
         if c == 'D':Result[-1] = Result[-1]**2
