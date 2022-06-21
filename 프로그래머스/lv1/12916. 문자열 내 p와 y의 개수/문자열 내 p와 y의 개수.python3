@@ -1,9 +1,4 @@
 def solution(s):
-    answer = True
     s = s.lower()
-    np,ny = 0,0
-    for c in s:
-        if c == 'p':np+=1
-        elif c == 'y':ny+=1
-    if np!=ny:return False
+    if s.count('p') != s.count('y'):return False
     return True
