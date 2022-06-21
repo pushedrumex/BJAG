@@ -1,0 +1,6 @@
+def solution(sizes):
+    a,b = 0,0
+    for size in sizes:
+        a = max(a,sorted(size)[0])
+        b = max(b,sorted(size)[1])
+    return a*b
