@@ -1,0 +1,9 @@
+from collections import deque
+def solution(arr):
+    arr = deque(arr)
+    answer = [arr.popleft()]
+    while arr:
+        if answer[-1] == arr[0]:
+            arr.popleft();continue
+        answer.append(arr.popleft())
+    return answer
