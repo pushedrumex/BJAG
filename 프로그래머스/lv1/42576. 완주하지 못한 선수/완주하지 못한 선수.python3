@@ -1,0 +1,8 @@
+from collections import defaultdict
+
+def solution(participant, completion):
+    d = defaultdict(int)
+    for one in completion:d[one]+=1
+    for one in participant:
+        if d[one]:d[one]-=1
+        else:return one
