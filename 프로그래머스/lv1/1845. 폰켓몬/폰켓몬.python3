@@ -1,0 +1,6 @@
+from collections import defaultdict
+def solution(nums):
+    d = defaultdict(int)
+    N = len(nums)
+    for num in nums:d[num]+=1
+    return min(N//2,len(d.keys()))
