@@ -1,0 +1,11 @@
+def solution(lottos, win_nums):
+    unkown = 0
+    rank = 7
+    for n in lottos:
+        if n in win_nums:rank-=1
+        if n == 0:unkown+=1
+    max_rank = rank-unkown
+    if rank>=6:rank=6
+    if max_rank>=6:max_rank=6
+    answer = [max_rank,rank]
+    return answer
