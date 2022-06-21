@@ -1,0 +1,9 @@
+def solution(d, budget):
+    d.sort()
+    answer=0
+    for o in d:
+        budget-=o
+        answer+=1
+        if budget==0:return answer
+        elif budget<0:return answer-1
+    return answer
