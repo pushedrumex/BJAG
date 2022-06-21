@@ -1,0 +1,4 @@
+def solution(s):
+    L = len(s)
+    if not L%2:return s[L//2-1:L//2+1]
+    else:return s[L//2]
