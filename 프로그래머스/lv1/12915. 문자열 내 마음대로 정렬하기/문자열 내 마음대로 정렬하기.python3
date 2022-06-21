@@ -1,0 +1,8 @@
+from collections import defaultdict
+def solution(strings, n):
+    answer = []
+    d = defaultdict(list)
+    for string in strings:d[string[n]].append(string)
+    for alp in sorted(d.keys()):answer+=sorted(d[alp])
+    return answer
+        
