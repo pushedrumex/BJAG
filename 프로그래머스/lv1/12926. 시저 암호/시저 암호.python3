@@ -1,0 +1,9 @@
+def solution(s, n):
+    s = list(s)
+    for i in range(len(s)):
+        if s[i].isalpha():
+            next = ord(s[i])+n
+            if ord(s[i])>=ord('a'):next = (next-ord('a'))%26+ord('a')
+            else:next = (next-ord('A'))%26+ord('A')
+            s[i] = chr(next)
+    return "".join(s)
