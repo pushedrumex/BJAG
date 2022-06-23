@@ -1,0 +1,30 @@
+from collections import defaultdict
+from itertools import combinations
+
+def solution(info, query):
+    d = defaultdict(list)
+    answer = []
+    for x in info:
+        x = x.split()
+        N = int(x.pop())
+        for i in range(5):
+            L = list(combinations(x,i))
+            for l in L:d["".join(l)].append(N)
+            
+    for k in d.keys():d[k].sort()
+    
+    for q in query:
+        q = q.split(" and ")
+        q+=q.pop().split()
+        N = int(q.pop())
+        w = ''
+        for i in q:
+            if i != '-':w+=i
+        left,right = 0,len(d[w])-1
+        result = len(d[w])
+        while left<=right:
+            mid = (left+right)//2
+            if N<=d[w][mid]:right = mid-1;result = mid
+            else:left = mid+1
+        answer.append(len(d[w])-result)
+    return answer
