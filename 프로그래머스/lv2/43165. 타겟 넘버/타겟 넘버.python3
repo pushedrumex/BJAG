@@ -1,0 +1,10 @@
+from itertools import combinations
+
+def solution(numbers, target):
+    total = sum(numbers)
+    answer = 0
+    for n in range(1,len(numbers)):
+        minus = map(sum,list(combinations(numbers,n)))
+        for m in minus:
+            if total - m*2 == target:answer+=1
+    return answer
