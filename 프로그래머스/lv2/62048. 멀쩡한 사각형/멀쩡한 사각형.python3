@@ -1,0 +1,5 @@
+def gcd(A,B):
+    return B if A%B == 0 else gcd(B,A%B)
+
+def solution(w,h):
+    return w*h - (w+h-gcd(w,h))
