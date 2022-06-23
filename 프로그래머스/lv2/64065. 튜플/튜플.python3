@@ -1,0 +1,12 @@
+from collections import defaultdict
+
+def solution(s):
+    answer = []
+    d = defaultdict(set)
+    s = s[2:-2].split('},{')
+    for i in range(len(s)):
+        s[i] = set(map(int,s[i].split(',')))
+        d[len(s[i])] = s[i]
+    K = list(d[1])
+    for i in range(2,len(s)+1):K+=list(d[i]-d[i-1])
+    return K
