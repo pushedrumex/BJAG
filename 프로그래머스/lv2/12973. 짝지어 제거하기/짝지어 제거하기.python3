@@ -1,0 +1,13 @@
+def solution(s):
+    s = list(s)
+    if not s:return 1
+    stack = []
+    flag = 0
+    while s:
+        if stack and stack[-1] == s[-1]:
+            flag = 1
+            stack.pop()
+            s.pop()
+        else: stack.append(s.pop())
+    if flag == 1:return solution(stack)
+    else:return 0 
