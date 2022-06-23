@@ -1,3 +1,5 @@
+## 최소공약수를 구해서 나누기
+
 import sys
 T = int(input())
 for i in range(T):
