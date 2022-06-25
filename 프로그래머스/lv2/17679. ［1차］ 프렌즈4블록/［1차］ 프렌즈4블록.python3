@@ -1,0 +1,24 @@
+def solution(m, n, board):
+    answer = 0
+    for i in range(m):board[i] = list(board[i])
+    while True:
+        match = []
+        flag = 0
+        for i in range(m-1):
+            for j in range(n-1):
+                if board[i][j] != '0' and board[i][j] == board[i][j+1] == board[i+1][j] == board[i+1][j+1]:
+                    flag = 1
+                    match.append((i,j))
+                    match.append((i,j+1))
+                    match.append((i+1,j))
+                    match.append((i+1,j+1))
+        if flag == 0:break
+        match = set(match)
+        answer += len(match)
+        for i in match:board[i[0]][i[1]] = '0'
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == '0':
+                    for up in range(i,0,-1):
+                        board[up][j], board[up-1][j] = board[up-1][j], board[up][j]
+    return answer
