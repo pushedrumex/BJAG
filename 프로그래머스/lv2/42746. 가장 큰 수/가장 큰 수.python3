@@ -1,0 +1,8 @@
+def solution(numbers):
+    for i in range(len(numbers)):numbers[i] = str(numbers[i])*3
+    numbers.sort(reverse=True)
+    for i in range(len(numbers)):numbers[i] = numbers[i][:len(numbers[i])//3]
+    answer = "".join(numbers)
+    if numbers[0] == '0':return '0'
+    return answer
+        
