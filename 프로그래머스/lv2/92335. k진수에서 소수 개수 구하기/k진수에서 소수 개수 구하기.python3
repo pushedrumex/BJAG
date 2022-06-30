@@ -1,0 +1,18 @@
+def solution(n, k):
+    kn = []
+    while n:
+        kn.append(str(n%k))
+        n //= k
+    kn.reverse()
+    kn = "".join(kn)
+    kn_split = kn.split('0')
+    answer = len(kn_split)
+    print(answer,kn_split)
+    for x in kn_split:
+        if not x or int(x) == 1:
+            answer-=1;continue
+        x = int(x)
+        root = int(x**0.5)
+        for i in range(2,root+1):
+            if x%i == 0:answer-=1;break
+    return answer
