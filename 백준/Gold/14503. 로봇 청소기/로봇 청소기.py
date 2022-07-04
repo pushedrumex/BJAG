@@ -6,7 +6,7 @@ map[r][c] = -1 # 청소한 부분
 clean = 1
 rotate = 0 # 회전 횟수
 
-while True:
+while True: 
     d = (3+d)%4 # 0 3 2 1
     rotate += 1
     if map[r+dxdy[d][0]][c+dxdy[d][1]] == 0:
