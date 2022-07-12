@@ -2,6 +2,8 @@ N = int(input())
 A = list(map(int,input().split()))
 LIS = [A[0]]
 index = [[]]
+# 각각 자리를 차지한 적 있는 수의 인덱스를 저장
+# 인덱스가 증가하는 순으로 수가 저장되도록 정리
 
 for i in range(N):
     if LIS[-1]<A[i]:
