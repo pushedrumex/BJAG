@@ -8,7 +8,7 @@ N,M,X = map(int,input().split())
 graph = [[] for _ in range(N+1)]
 
 for _ in range(M):
-    p1,p2,d = map(int,input().split())
+    p1,p2,d = map(int,input().split()) 
     graph[p1].append((p2,d))
 
 def disjkstra(start):
