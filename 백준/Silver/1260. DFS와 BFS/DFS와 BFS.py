@@ -1,35 +1,35 @@
-from collections import deque
+from collections import defaultdict, deque
 
-N,M,V = map(int,input().split())
-graph = []
-for _ in range(N+1):graph.append([])
+def bfs(start, dic):
+    queue = deque([start])
+    visited[start] = True
+    while queue:
+        node = queue.popleft()
+        print(node, end=" ")
+        for n in sorted(dic[node]):
+            if not visited[n]:
+                visited[n] = True
+                queue.append(n)
+
+def dfs(start, dic):
+    visited[start] = True
+    print(start, end=" ")
+    for n in sorted(dic[start]):
+        if not visited[n]:
+            visited[n] = True
+            dfs(n, dic)
+
+
+dic = defaultdict(lambda: [])
+N, M, V = map(int, input().split())
 
 for _ in range(M):
-    a,b = map(int,input().split())
-    graph[a].append(b)
-    graph[b].append(a)
-for i in range(len(graph)):graph[i].sort()
-visited_dfs = [False]*(N+1)
-visited_bfs = [False]*(N+1)
+    node1, node2 = map(int, input().split())
+    dic[node1].append(node2)
+    dic[node2].append(node1)
 
-def dfs(graph,V,visited):
-    visited[V] = True
-    print(V,end=" ")
-    for i in graph[V]:
-        if visited[i] == False:dfs(graph,i,visited)
-
-def bfs(graph,V,visited):
-    queue = deque()
-    queue.append(V)
-    visited[V] = True
-    while queue:
-        k = queue.popleft()
-        print(k,end=" ")
-        for i in graph[k]:
-            if visited[i] == False:
-                queue.append(i)
-                visited[i] = True
-
-dfs(graph,V,visited_dfs)
+visited = [False] * (N + 1)
+dfs(V, dic)
 print()
-bfs(graph,V,visited_bfs)
+visited = [False] * (N + 1)
+bfs(V, dic)
