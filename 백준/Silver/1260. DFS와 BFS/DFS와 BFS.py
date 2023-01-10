@@ -1,24 +1,25 @@
 from collections import defaultdict, deque
 
-def bfs(start, dic):
-    queue = deque([start])
-    visited[start] = True
+def bfs(V):
+    queue = deque([V])
+    visited[V] = True # 시작 노드 방문 기록
     while queue:
         node = queue.popleft()
+        visited[node] = True
         print(node, end=" ")
         for n in sorted(dic[node]):
             if not visited[n]:
-                visited[n] = True
                 queue.append(n)
+                visited[n] = True
+                # 동일한 노드가 큐에 들어가는 것을 방지하기 위해 이 부분에서 방문처리
+                
 
-def dfs(start, dic):
-    visited[start] = True
-    print(start, end=" ")
-    for n in sorted(dic[start]):
+def dfs(V):
+    visited[V] = True
+    print(V, end=" ")
+    for n in sorted(dic[V]):
         if not visited[n]:
-            visited[n] = True
-            dfs(n, dic)
-
+            dfs(n)
 
 dic = defaultdict(lambda: [])
 N, M, V = map(int, input().split())
@@ -29,7 +30,7 @@ for _ in range(M):
     dic[node2].append(node1)
 
 visited = [False] * (N + 1)
-dfs(V, dic)
+dfs(V)
 print()
 visited = [False] * (N + 1)
-bfs(V, dic)
+bfs(V)
