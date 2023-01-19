@@ -4,6 +4,7 @@ str2 = input()
 len1 = len(str1)
 len2 = len(str2)
 
+# 각각의 진해도에 해당하는 최대값을 저장하는 것
 dp = [[0]*(len1+1) for _ in range(len2+1)]
 
 for i in range(1, len1+1):
