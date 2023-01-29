@@ -5,6 +5,7 @@ dydx = [(1,0), (-1,0), (0,1), (0,-1)]
 def dijkstra():
     distance[1][1] = graph[0][0]
     q = []
+    # (비용, y, x)
     heappush(q, (graph[0][0], 1, 1))
     while q:
         dist, y, x = heappop(q)
