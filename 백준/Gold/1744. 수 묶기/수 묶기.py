@@ -18,8 +18,8 @@ while negative:
         n2 = negative.pop()
         result += n1 * n2
         n1 = 0
-result += n1
-n1 = 0
+    else:result += n1
+
 while positive:
     n1 = positive.pop()
     if positive:
@@ -29,6 +29,6 @@ while positive:
         else:
             result += n1 * n2
         n1 = 0
-result += n1
+    else: result += n1
 
-print(result)      
+print(result)
