@@ -7,6 +7,5 @@ def solution(genres, plays):
         dic[genres[i]][1][i] += plays[i]
     answer = []
     for genre, sing in sorted(dic.items(), key=lambda item: item[1], reverse=True):
-        temp = sorted(sing[1].items(), key=lambda item : item[1], reverse=True)[:2]
-        answer += [i[0] for i in temp]
+        answer += [i[0] for i in sorted(sing[1].items(), key=lambda item : item[1], reverse=True)[:2]]
     return answer
