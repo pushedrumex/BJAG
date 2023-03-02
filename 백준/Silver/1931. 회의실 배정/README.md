@@ -1,10 +1,10 @@
-# [Silver II] 회의실 배정 - 1931 
+# [Silver I] 회의실 배정 - 1931 
 
 [문제 링크](https://www.acmicpc.net/problem/1931) 
 
 ### 성능 요약
 
-메모리: 51488 KB, 시간: 448 ms
+메모리: 136280 KB, 시간: 508 ms
 
 ### 분류
 
