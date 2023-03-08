@@ -1,22 +1,26 @@
 from collections import deque
-
 def solution(queue1, queue2):
-    answer = 0
-    sum1 = sum(queue1)
-    sum2 = sum(queue2)
-    if (sum1 + sum2) % 2 != 0: return -1
-    max_cnt = len(queue1)*4
-    queue1, queue2 = deque(queue1), deque(queue2)
-    while answer < max_cnt and queue1 and queue2 and sum1 != sum2:
-        answer += 1
-        if sum1 > sum2:
-            num = queue1.popleft()
-            queue2.append(num)
-            sum2 += num
-            sum1 -= num
-        else:
-            num = queue2.popleft()
-            queue1.append(num)
-            sum1 += num
-            sum2 -= num
-    return answer if sum1 == sum2 else -1
+    answer = -1
+    allsum=sum(queue1)+sum(queue2)
+    target=allsum/2
+    q1=deque(queue1)
+    q2=deque(queue2)
+    lsum=sum(q1)
+    
+    cnt=0
+    
+    if max(q1)>target or max(q2)>target :
+        return -1
+    
+    while q1 and q2 :
+        if lsum>target :
+            lsum-=q1.popleft()
+            cnt+=1   
+        elif lsum<target :
+            tmp=q2.popleft()
+            q1.append(tmp)
+            lsum+=tmp
+            cnt+=1 
+        elif lsum==target :
+            return cnt
+    return answer
