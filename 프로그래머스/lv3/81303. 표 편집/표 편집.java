@@ -4,16 +4,18 @@ class Solution {
     public String solution(int n, int k, String[] cmd) {
         String[] table = new String[n];
         Arrays.fill(table, "O");
-
-        Node head = set(n);
-        Node current = find(k, head);
-
-        Stack remove = new Stack();
+        
+        Stack<Node> remove = new Stack();
+        
+        Node current = set(n);
+        while (k-- > 0)
+            current = current.next;
 
         for (String c: cmd) {
             if (c.equals("C")) {
                 remove.push(current);
                 table[current.n] = "X";
+                
                 if (current.prev == null) {
                     current = current.next;
                     current.prev = null;
@@ -26,18 +28,22 @@ class Solution {
                     current = current.next;
                 }
             } else if (c.equals("Z")) {
-                Node node = (Node) remove.pop();
+                Node node = remove.pop();
                 table[node.n] = "O";
+                
                 if (node.prev != null)
                     node.prev.next = node;
+                
                 if (node.next != null)
                     node.next.prev = node;
+                
                 if (current == null)
                     current = node;
 
             } else {
                 String[] tmp = c.split(" ");
                 int num = Integer.parseInt(tmp[1]);
+                
                 if (tmp[0].equals("U")) {
                     while (num-- > 0)
                         current = current.prev;
@@ -51,32 +57,27 @@ class Solution {
     }
 
     private Node set(int n) {
-        Node head = new Node();
+        Node head = new Node(0);
         Node prev = head;
         Node node;
+        
         for (int i = 1; i < n; i++) {
-            node = new Node();
-            node.n = i;
+            node = new Node(i);
+            
             node.prev = prev;
-
-            prev.n = i - 1;
             prev.next = node;
+            
             prev = node;
         }
         return head;
     }
 
-    private Node find(int k, Node head) {
-        Node node = head;
-        while (k-- > 0) {
-            node = node.next;
-        }
-        return node;
-    }
-
     class Node {
         int n;
-        Node prev;
-        Node next;
+        Node prev, next;
+        
+        public Node(int n) {
+            this.n = n;
+        }
     }
 }
