@@ -29,8 +29,8 @@ def solution(n, k, cmd):
             idx = remove.pop()
             node = graph[idx]
             table[idx] = "O"
-            graph[node[0]][1] = idx
-            
+
+            if node[0] != -1: graph[node[0]][1] = idx
             if node[1] != -1: graph[node[1]][0] = idx
             
             if k == -1: k = idx
