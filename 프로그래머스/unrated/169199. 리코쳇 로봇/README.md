@@ -1,10 +1,10 @@
 # [unrated] 리코쳇 로봇 - 169199 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/169199?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/169199?language=java) 
 
 ### 성능 요약
 
-메모리: 10.3 MB, 시간: 1.57 ms
+메모리: 77.1 MB, 시간: 1.02 ms
 
 ### 구분
 
