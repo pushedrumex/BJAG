@@ -5,13 +5,9 @@ class Solution {
         int[][] dxdy = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         int X = board.length;
         int Y = board[0].length();
-        int x, y, cnt;
-        int _x, _y;
+        int x, y, cnt, _x, _y;
         ArrayDeque<int[]> q = new ArrayDeque();
         boolean[][] visited = new boolean[X][Y];
-
-        for (boolean[] temp: visited)
-            Arrays.fill(temp, false);
 
         for (int i = 0; i < X; i++) {
             for (int j = 0; j < Y; j++)
