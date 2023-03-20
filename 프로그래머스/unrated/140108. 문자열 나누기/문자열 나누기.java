@@ -1,30 +1,25 @@
 class Solution {
-    int answer, same, diff;
-    char c;
-    boolean flag;
-    
     public int solution(String s) {
-        for (int i=0;i < s.length();i++) {
+        int answer = 0, same = 0, diff = 0;
+        char std = ' ';
+        boolean flag = false;
+        
+        for (char c: s.toCharArray()) {
             if (!flag) {
-                c = s.charAt(i);
+                answer++;
+                std = c;
                 same = 1;
                 diff = 0;
                 flag = true;
             } else {
-                if (c == s.charAt(i))
+                if (std == c)
                     same++;
                 else
                     diff++;
-                
-                if (same == diff) {
-                    answer++;
+                if (same == diff)
                     flag = false;
-                }
             }
-        }
-        if (same != diff)
-            answer++;
-        
+        }        
         return answer;
     }
 }
