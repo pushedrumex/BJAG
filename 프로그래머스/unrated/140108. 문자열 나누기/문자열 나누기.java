@@ -1,25 +1,28 @@
+import java.util.*;
+
 class Solution {
     public int solution(String s) {
-        int answer = 0, same = 0, diff = 0;
-        char std = ' ';
-        boolean flag = false;
+        int answer = 0;
+        int same, diff;
+        Deque<String> q = new ArrayDeque(Arrays.asList(s.split("")));
+        String first, target;
         
-        for (char c: s.toCharArray()) {
-            if (!flag) {
-                answer++;
-                std = c;
-                same = 1;
-                diff = 0;
-                flag = true;
-            } else {
-                if (std == c)
+        while (!q.isEmpty()) {
+            answer++;
+            first = q.removeFirst();
+            same = 1;
+            diff = 0;
+            
+            while (!q.isEmpty() && same != diff ) {
+                target = q.removeFirst();
+                if (target.equals(first)) {
                     same++;
-                else
+                } else {
                     diff++;
-                if (same == diff)
-                    flag = false;
+                }
             }
-        }        
+        }
+        
         return answer;
     }
 }
