@@ -7,7 +7,7 @@ def solution(money):
     dp2[1], dp2[2] = money[1], max(money[1:3])
     
     # 첫번째 집 포함
-    for i in range(2, N):
+    for i in range(2, N-1):
         dp1[i] = max(money[i]+dp1[i-2], dp1[i-1])
     # 첫번째 집 불포함
     for i in range(3, N):
