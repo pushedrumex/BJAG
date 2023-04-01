@@ -13,7 +13,7 @@ def union_parent(parent,a,b):
 
 def solution(n, costs):
     answer = 0
-    parent = [n] * n
+    parent = [0] * n
     edges = []
     
     for i in range(n):
