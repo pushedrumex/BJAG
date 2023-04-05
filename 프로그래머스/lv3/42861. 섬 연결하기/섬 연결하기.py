@@ -8,7 +8,7 @@ def find_parent(parent,x):
 def union_parent(parent,a,b):
 	a = find_parent(parent,a)
 	b = find_parent(parent,b)
-	if a > b: parent[b] = a
+	if a < b: parent[b] = a
 	else: parent[a] = b
 
 def solution(n, costs):
