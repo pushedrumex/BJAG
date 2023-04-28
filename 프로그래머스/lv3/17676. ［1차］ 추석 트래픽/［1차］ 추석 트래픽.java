@@ -26,11 +26,10 @@ class Solution {
         }
         
         int temp;
-        start = convertMs(lines[0].split(" ")[1]);
         for (int i=0;i<list.size();i++) {
             temp = 1;
             for (int j=i+1;j<list.size();j++){
-                if (list.get(j).start < list.get(i).end+1000) {
+                if (list.get(j).start <= list.get(i).end+999) {
                     temp++;
                 }
             }
