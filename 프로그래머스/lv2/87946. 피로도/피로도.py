@@ -1,16 +1,17 @@
 from itertools import permutations
 
 def solution(k, dungeons):
+    N = len(dungeons)
     answer = 0
-    for dungeon in permutations(dungeons, len(dungeons)):
-        temp = k
-        count = 0
-        for a, b in dungeon:
-            if a <= temp:
-                count += 1
-                temp -= b
+    
+    for order in permutations(dungeons, N):
+        _k = k
+        cnt = 0
+        for a, b in order:
+            if _k >= a:
+                _k -= b
+                cnt += 1
             else:
-                flag = False
                 break
-        answer = max(answer, count)
+        answer = max(answer, cnt)
     return answer
