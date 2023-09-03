@@ -4,7 +4,7 @@
 from collections import deque
 
 chess = [list(input()) for _ in range(8)]
-visited = [[False] * 8 for _ in range(8)]
+visited = [[[False] * 17 for _ in range(8)] for _ in range(8)]
 
 dxdy = ((0,1),(0,-1),(1,0),(-1,0),(1,1),(-1,-1),(1,-1),(-1,1))
 
@@ -12,7 +12,7 @@ answer = 0
 
 # x, y, time
 q = deque([(7, 0, 0)])
-visited[7][0] = True
+visited[7][0][0] = True
 while q:
     x, y, time = q.popleft()
 
@@ -20,18 +20,20 @@ while q:
     if (x, y) == (0, 7):
         answer = 1
         break
-
+    
+    if time > 15:
+        break
     # 벽이 캐릭터가 있는 칸으로 이동했는데, 가장 오른쪽이 아니라면
     if x - time > -1 and chess[x - time][y] == "#" and y != 7:
         continue
 
     for dx, dy in dxdy:
         _x, _y = x + dx, y + dy
-        if not (0 <= _x < 8 and 0 <= _y < 8) or visited[_x][_y]: continue
+        if not (0 <= _x < 8 and 0 <= _y < 8) or visited[_x][_y][time + 1]: continue
         # 이동할 곳이 벽이라면
         if _x - time > -1 and chess[_x - time][_y] == "#": continue
         q.append((_x, _y, time + 1))
-        visited[_x][_y]
+        visited[_x][_y][time + 1] = True
 
     # 이동하지 않음
     q.append((x, y, time + 1))
