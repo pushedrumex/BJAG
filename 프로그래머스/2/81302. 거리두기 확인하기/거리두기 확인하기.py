@@ -1,4 +1,3 @@
-# P : 응시자, O : 책상, X : 파티션
 from collections import deque
 
 def solution(places):
@@ -26,7 +25,6 @@ def bfs(start_x, start_y, place):
             _x, _y = x + dx, y + dy
             if not (0 <= _x < 5 and 0 <= _y < 5) or visited[_x][_y]: continue
             if abs(start_x - _x) + abs(start_y - _y) > 2: continue
-            if (start_x, start_y) == (_x, _y): continue
             if place[_x][_y] == "X": continue
             if place[_x][_y] == "P": return 0
             visited[_x][_y] = True
