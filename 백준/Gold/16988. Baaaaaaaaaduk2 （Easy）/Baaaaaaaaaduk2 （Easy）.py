@@ -1,5 +1,6 @@
 from collections import deque
 
+# 그룹이 상대방의 바둑 + 벽으로만 둘러싸여있다면 먹힌것
 N, M = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(N)]
 
@@ -17,9 +18,10 @@ def bfs(start):
             if graph[_x][_y] == 0:
                 flag = True
                 count = 0
-            visited[_x][_y] = True
-            if not flag: count += 1
-            q.appendleft((_x, _y))
+            elif graph[_x][_y] == 2:
+                visited[_x][_y] = True
+                if not flag: count += 1
+                q.appendleft((_x, _y))
     return count
 
 answer = 0
