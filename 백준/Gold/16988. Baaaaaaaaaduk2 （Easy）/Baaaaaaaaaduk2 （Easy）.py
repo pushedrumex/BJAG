@@ -33,7 +33,7 @@ for x1 in range(N):
                 graph[x1][y1] = 1
                 graph[x2][y2] = 1
                 
-                visited = [[0] * M for _ in range(N)]
+                visited = [[False] * M for _ in range(N)]
                 temp = 0
                 for i in range(N):
                     for j in range(M):
