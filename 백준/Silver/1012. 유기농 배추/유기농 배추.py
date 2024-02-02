@@ -1,27 +1,31 @@
-import sys
-sys.setrecursionlimit(10000)
+from collections import deque
 
-def dfs(x, y):
-    if x < 0 or y < 0 or x >= M or y >= N: return
-    if not graph[y][x]: 
-        graph[y][x] = True
-        dfs(x-1, y)
-        dfs(x+1, y)
-        dfs(x, y-1)
-        dfs(x, y+1)
+dxdy = ((0,1),(1,0),(-1,0),(0,-1))
+def bfs(ground, x, y):
+    q = deque([(x, y)])
+    ground[x][y] = 0
+    while q:
+        x, y = q.popleft()
+        for dx, dy in dxdy:
+            _x, _y = x + dx, y + dy
+            if not (0 <= _x < N and 0 <= _y < M) or ground[_x][_y] == 0: continue
+            ground[_x][_y] = 0
+            q.append((_x, _y))
 
 T = int(input())
-
 for _ in range(T):
-    result = 0
     M, N, K = map(int, input().split())
-    graph = [[True] * M for _ in range(N)]
+    ground = [[0] * M for _ in range(N)]
+
     for _ in range(K):
-        X, Y = map(int, input().split())
-        graph[Y][X] = False
-    for y in range(N):
-        for x in range(M):
-            if (not graph[y][x]):
-                dfs(x, y)
-                result += 1
-    print(result)
+        y, x = map(int, input().split())
+        ground[x][y] = 1
+    
+    answer = 0
+    for i in range(N):
+        for j in range(M):
+            if ground[i][j] == 1:
+                bfs(ground, i, j)
+                answer += 1
+
+    print(answer)
