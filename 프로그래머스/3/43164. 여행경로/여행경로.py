@@ -19,7 +19,9 @@ def dfs(a, count):
         if visited[(a, b)] <= 0: continue
         visited[(a, b)] -= 1
         spots.append(b)
+        
         dfs(b, count + 1)
+        
         visited[(a, b)] += 1
         spots.pop()
         
