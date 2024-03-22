@@ -1,7 +1,13 @@
-H,W = map(int, input().split())
-d = list(map(int, input().split()))
-water = [0]*W
-for i in range(1,W-1):
-    lmax = max(d[:i]);rmax = max(d[i+1:])
-    if lmax > d[i] and rmax > d[i]:water[i] = min(lmax,rmax) - d[i]
+H, W = map(int, input().split())
+walls = list(map(int, input().split()))
+
+water = [0] * (W)
+left = walls[0]
+for i in range(1, W-1):
+    if walls[i] >= left:
+        left = walls[i]
+        continue
+    right = max(walls[i:])
+    water[i] = min(left, right) - walls[i]
+
 print(sum(water))
