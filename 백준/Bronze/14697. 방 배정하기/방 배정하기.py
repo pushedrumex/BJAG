@@ -1,16 +1,10 @@
 A, B, C, N = map(int, input().split())
 
-rooms = [A, B, C]
-def dfs(n):
-    for i in range(3):
-        _n = n + rooms[i]
-        if _n < N:
-            dfs(_n)
-        elif _n == N:
-            print(1)
-            exit()
-        else:
-            return
+for a in range(300):
+    for b in range(300):
+        for c in range(300):
+            if A*a + B*b + C*c == N:
+                print(1)
+                exit()
 
-dfs(0)
 print(0)
