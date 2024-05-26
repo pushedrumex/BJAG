@@ -1,37 +1,39 @@
 from itertools import permutations
 from collections import deque
 
+OP = ["+", "-", "*"]
 def solution(expression):
-    operators = ("-", "+", "*")
-    q = deque()
-    temp = ""
-    for s in expression:
-        if s in operators:
-            q.append(int(temp))
-            q.append(s)
-            temp = ""
-        else:
-            temp += s
-    q.append(int(temp))
     answer = 0
-    for orders in permutations(operators, 3):
-        new_q = q.copy()
-
-        for _operator in orders:
-            temp_q = new_q.copy()
-            new_q.clear()
-            while temp_q:
-                now = temp_q.popleft()
-                if now == _operator:
-                    a, b = new_q.pop(), temp_q.popleft()
-                    if now == "-":
-                        _answer = a - b
-                    elif now == "+":
-                        _answer = a + b
-                    else:
-                        _answer = a * b
-                    new_q.append(_answer)
+    q = deque(expression)
+    init_q = deque()
+    while q:
+        temp = q.popleft()
+        if temp in OP:
+            init_q.append(temp)
+            continue
+        while q and q[0] not in OP:
+            temp += q.popleft()
+        init_q.append(int(temp))
+    
+    for cals in permutations(OP, 3):
+        before_q = deque(init_q)
+        for cal in cals:
+            after_q = deque()
+            while before_q:
+                temp = before_q.popleft()
+                if temp == cal:
+                    n1 = after_q.pop()
+                    n2 = before_q.popleft()
+                    if cal == "+":
+                        result = n1 + n2
+                    elif cal == "-":
+                        result = n1 - n2
+                    elif cal == "*":
+                        result = n1 * n2
+                    after_q.append(result)
                 else:
-                    new_q.append(now)
-        answer = max(answer, abs(_answer))
+                    after_q.append(temp)
+            before_q = after_q
+        
+        answer = max(answer, abs(after_q[0]))
     return answer
