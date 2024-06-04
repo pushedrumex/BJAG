@@ -1,44 +1,48 @@
 from copy import deepcopy
 
+M, N = None, None
 def solution(key, lock):
-    m, n = len(key), len(lock)
-    size = 3 * n
-    graph = [[0] * size for _ in range(size)]
+    global M, N
     
-    for i in range(n):
-        for j in range(n):
-            graph[i+n][j+n] = lock[i][j]
+    M = len(key)
+    N = len(lock)
     
-    for i1 in range(n-m+1, 2*n):
-        for j1 in range(n-m+1, 2*n):
-            if is_open(deepcopy(graph), key, i1, j1, m, n):
-                return True 
-    
-    for _ in range(3):
-        key = rotate(key, m)
-        for i1 in range(n-m+1, 2*n):
-            for j1 in range(n-m+1, 2*n):
-                if is_open(deepcopy(graph), key, i1, j1, m, n):
-                    return True 
+    lock_board = [[0] * (3*N) for _ in range(3*N)]
+    for i in range(N):
+        for j in range(N):
+            lock_board[i+N][j+N] = lock[i][j]
+        
+    for _ in range(4):
+        key = rotate(key)
+        if possible(key, lock_board):
+            return True
+
     return False
 
-def rotate(key, m):
-    result = [[0] * m for _ in range(m)]
-    for i in range(m):
-        for j in range(m):
-            result[j][m-i-1] = key[i][j]
-    return result
+def possible(key, lock_board):
+    for ox in range(N-M, 2*N):
+        for oy in range(N-M, 2*N):
+            if match(deepcopy(lock_board), key, ox, oy):
+                return True
 
-def is_open(graph, key, i1, j1, m, n):
-    for i2 in range(m):
-        for j2 in range(m):
-            x, y = i1 + i2, j1 + j2
-            if n <= x < 2 * n and n <= y < 2 * n:
-                if graph[x][y] + key[i2][j2] != 1: return False
-                graph[x][y] = 1
-                
-    for i in range(n, 2*n):
-        for j in range(n, 2*n):
-            if graph[i][j] == 0: return False
+    return False
+
+def match(lock_board, key, ox, oy):
+    for x in range(M):
+        for y in range(M):
+            lock_board[ox+x][oy+y] += key[x][y]
+    
+    for i in range(N, 2*N):
+        for j in range(N, 2*N):
+            if lock_board[i][j] != 1:
+                return False
 
     return True
+        
+def rotate(key):
+    new_key = [[0] * M for _ in range(M)]
+    for x in range(M):
+        for y in range(M):
+            new_key[x][y] = key[y][M-x-1]
+    return new_key
+    
