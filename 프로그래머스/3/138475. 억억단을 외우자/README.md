@@ -1,6 +1,6 @@
 # [level 3] 억억단을 외우자 - 138475 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/138475?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/138475) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 06월 11일 15:28:50
+2024년 06월 11일 15:29:18
 
 ### 문제 설명
 
