@@ -1,15 +1,11 @@
-from collections import defaultdict
-
 def solution(k, tangerine):
-    dic = defaultdict(int)
-    
+    count = [0] * (10_000_000+1)
     for t in tangerine:
-        dic[t] += 1
-        
-    answer = 0
-    for t in sorted(dic.keys(), key=lambda t: dic[t], reverse=True):
-        k -= dic[t]
-        answer += 1
-        if k <= 0: break
-        
-    return answer
+        count[t] += 1
+    count.sort(reverse=True)
+    i = 0
+    while k > 0:
+        k -= count[i]
+        i += 1
+
+    return i
