@@ -6,9 +6,9 @@ class Solution {
     int basicFee;
     int unitTime;
     int unitFee;
+    int MAX_TIME = convert("23:59");
     
     public int[] solution(int[] fees, String[] records) {
-        int MAX_TIME = convert("23:59");
         
         basicTime = fees[0];
         basicFee = fees[1];
@@ -16,7 +16,8 @@ class Solution {
         unitFee = fees[3];
         
         HashMap<String, Integer> inMap = new HashMap<>();
-        HashMap<String, Integer> timeMap = new HashMap<>();
+        TreeMap<String, Integer> timeMap = new TreeMap<>();
+        
         for (String record: records) {
             StringTokenizer st = new StringTokenizer(record);
             int t = convert(st.nextToken());
@@ -38,9 +39,7 @@ class Solution {
         }
         
         ArrayList<Integer> answer = new ArrayList<>();
-        ArrayList<String> cars = new ArrayList<>(timeMap.keySet());
-        Collections.sort(cars);
-        for (String car: cars) {
+        for (String car: timeMap.keySet()) {
             answer.add(calculateFee(timeMap.get(car)));
         }
         
